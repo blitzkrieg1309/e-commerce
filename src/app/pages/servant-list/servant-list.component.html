@@ -1,0 +1,122 @@
+<app-header></app-header>
+
+<div class="container mt-3">
+  <h3 class="text-center">Servant List</h3>
+  <div class="row mt-5">
+    <!-- Filter -->
+    <div class="col-md-3 mb-3">
+      <h5>Filters</h5>
+      <hr />
+      <div class="filter">
+        <label for="star-filter"><h6>Filter by Star Rating:</h6></label>
+        <select
+          id="star-filter"
+          class="form-select"
+          (change)="onStarFilter($event)"
+        >
+          <option value="all">All</option>
+          <option value="5">5 Stars</option>
+          <option value="4">4 Stars</option>
+          <option value="3">3 Stars</option>
+          <option value="2">2 Stars</option>
+          <option value="1">1 Star</option>
+        </select>
+      </div>
+      <br />
+      <div class="filter">
+        <label for="class-filter"><h6>Filter by Class:</h6></label>
+        <select
+          id="class-filter"
+          class="form-select"
+          (change)="onClassFilter($event)"
+        >
+          <option value="all">All</option>
+          <option value="Saber">Saber</option>
+          <option value="Archer">Archer</option>
+          <option value="Lancer">Lancer</option>
+          <option value="Rider">Rider</option>
+          <option value="Caster">Caster</option>
+          <option value="Assassin">Assassin</option>
+          <option value="Berserker">Berserker</option>
+          <option value="Ruler">Ruler</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Product List -->
+    <div class="col-md-9">
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search for Servants..."
+            (input)="onSearch($event)"
+          />
+        </div>
+      </div>
+
+      <div class="row">
+        <div
+          *ngFor="let servant of filteredServants"
+          class="col-lg-4 col-md-6 mb-3"
+          (click)="goToProductDetail(servant.id)"
+        >
+          <div class="card">
+            <img
+              [src]="'images/pages/servants/achilles.webp'"
+              [alt]="servant.name"
+              class="card-img-top"
+              style="height: 300px; object-fit: contain"
+            />
+            <div class="card-body">
+              <h5 class="card-title">{{ servant.name }}</h5>
+
+              <p><strong>Class:</strong> {{ servant.class }}</p>
+              <p>
+                <strong>Price:</strong> {{ servant.price | currency : "USD" }}
+              </p>
+              <p>
+                <strong>Star:</strong>
+                <ng-container *ngFor="let star of [].constructor(servant.star)">
+                  ⭐
+                </ng-container>
+              </p>
+              <!-- <button class="btn btn-primary btn-sm">Add to Cart</button> -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <nav>
+        <ul class="pagination justify-content-center">
+          <li
+            class="page-item"
+            [class.disabled]="currentPage === 1"
+            (click)="onPageChange(currentPage - 1)"
+          >
+            <a class="page-link">&laquo;</a>
+          </li>
+          <li
+            *ngFor="let page of [1, 2, 3, 4, 5]"
+            class="page-item"
+            [class.active]="page === currentPage"
+            (click)="onPageChange(page)"
+          >
+            <a class="page-link">{{ page }}</a>
+          </li>
+          <li
+            class="page-item"
+            [class.disabled]="filteredServants.length < itemsPerPage"
+            (click)="onPageChange(currentPage + 1)"
+          >
+            <a class="page-link">&raquo;</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

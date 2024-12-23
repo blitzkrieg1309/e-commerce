@@ -1,0 +1,190 @@
+<app-header></app-header>
+
+<div class="container">
+  <div class="row mt-5 mb-5">
+    <div class="col-12 col-md-4 main">
+      <img
+        src="images/pages/servants/achilles.webp"
+        alt=""
+        class="img-fluid"
+        style="height: 500px; object-fit: contain"
+      />
+      <div class="row mt-3 variant">
+        <div class="col-3">
+          <img
+            src="images/class/Saber.webp"
+            alt=""
+            class="img-fluid"
+            style="width: 100px; height: 100px; object-fit: contain"
+          />
+        </div>
+        <div class="col-3 variant">
+          <img
+            src="images/class/Archer.webp"
+            alt=""
+            class="img-fluid"
+            style="width: 100px; height: 100px; object-fit: contain"
+          />
+        </div>
+        <div class="col-3 variant">
+          <img
+            src="images/class/Lancer.webp"
+            alt=""
+            class="img-fluid"
+            style="width: 100px; height: 100px; object-fit: contain"
+          />
+        </div>
+        <div class="col-3 variant">
+          <img
+            src="images/class/Rider.webp"
+            alt=""
+            class="img-fluid"
+            style="width: 100px; height: 100px; object-fit: contain"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-8">
+      <h3>{{ servant.name }}</h3>
+      <p>{{ servant.class }}</p>
+      <p>
+        <ng-container *ngFor="let star of [].constructor(servant.star)">
+          ⭐
+        </ng-container>
+      </p>
+      <p>Price: {{ servant.price }}</p>
+      <p>{{ servant.description }}</p>
+      <h6>Noble Phantasm</h6>
+      <ul>
+        <li>{{ servant.noble_phantasm }}</li>
+      </ul>
+      <hr />
+      <div class="input-group" style="width: 150px">
+        <button
+          class="btn btn-primary"
+          type="button"
+          id="button-minus"
+          (click)="decrementQuantity()"
+        >
+          <b>-</b>
+        </button>
+        <input
+          class="form-control text-center"
+          type="number"
+          min="1"
+          [value]="quantity"
+        />
+        <button
+          class="btn btn-primary"
+          type="button"
+          id="button-plus"
+          (click)="incrementQuantity()"
+        >
+          <b>+</b>
+        </button>
+      </div>
+      <br />
+      <button
+        *ngIf="isLoggedIn"
+        class="btn btn-primary"
+        (click)="submitToCart()"
+      >
+        Add to Cart
+      </button>
+      <button
+        *ngIf="!isLoggedIn"
+        class="btn btn-primary"
+        (click)="redirectToLogin()"
+      >
+        Add to Cart
+      </button>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-4">
+        <p class="fluid">
+          <button
+            id="btn-lore"
+            class="legend btn btn-secondary w-100"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#lore"
+            aria-expanded="false"
+            aria-controls="collapseExample"
+          >
+            Lore
+          </button>
+        </p>
+      </div>
+
+      <div class="col-4">
+        <p>
+          <button
+            id="btn-skill"
+            class="legend btn btn-secondary w-100"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#skill"
+            aria-expanded="false"
+            aria-controls="collapseWidthExample"
+          >
+            Skills
+          </button>
+        </p>
+      </div>
+
+      <div class="col-4">
+        <p>
+          <button
+            id="btn-np"
+            class="legend btn btn-secondary w-100"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#np"
+            aria-expanded="false"
+            aria-controls="collapseWidthExample"
+          >
+            Noble Phantasm
+          </button>
+        </p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="collapse" id="lore">
+          <div class="card card-body">
+            <b>Lore :</b>
+            <p>
+              {{ servant.lore }}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="collapse" id="skill">
+          <div class="card card-body">
+            <b>Skills :</b>
+            <p>{{ servant.skill }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="collapse" id="np">
+          <div class="card card-body">
+            <b>Noble Phantasm :</b>
+            <p>
+              {{ servant.noble_phantasm }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
