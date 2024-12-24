@@ -1,0 +1,90 @@
+<app-header></app-header>
+
+<div class="container">
+  <h3 class="text-center mt-5">Order Status</h3>
+
+  <section>
+    <div class="container py-5 h-100" *ngFor="let order of orders">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col">
+          <div class="card card-stepper" style="border-radius: 10px">
+            <div class="card-body p-4">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex flex-column">
+                  <span class="lead fw-normal"
+                    >Servant : {{ order.product.name }}</span
+                  >
+                  <span class="text-muted small"
+                    >Order Date :
+                    {{ order.order.order_date | date : "medium" }}</span
+                  >
+                  <span class="text-muted small"
+                    >Status : {{ order.order.status }}</span
+                  >
+                </div>
+                <div>
+                  <button
+                    data-mdb-button-init
+                    data-mdb-ripple-init
+                    class="btn btn-outline-primary"
+                    type="button"
+                  >
+                    Track order details
+                  </button>
+                </div>
+              </div>
+              <hr class="my-4" />
+
+              <div
+                class="d-flex flex-row justify-content-between align-items-center align-content-center"
+              >
+                <span
+                  class="dot"
+                  [ngClass]="{ 'big-dot': order.order.status === 'pending' }"
+                ></span>
+                <hr class="flex-fill track-line" />
+                <span
+                  class="dot"
+                  [ngClass]="{ 'big-dot': order.order.status === 'onprocess' }"
+                ></span>
+                <hr class="flex-fill track-line" />
+                <span
+                  class="dot"
+                  [ngClass]="{ 'big-dot': order.order.status === 'shipped' }"
+                ></span>
+                <hr class="flex-fill track-line" />
+                <span
+                  class="d-flex justify-content-center align-items-center dot"
+                  [ngClass]="{ 'big-dot': order.order.status === 'delivered' }"
+                >
+                  <i class="fa fa-check text-white"></i
+                ></span>
+              </div>
+
+              <div
+                class="d-flex flex-row justify-content-between align-items-center"
+              >
+                <div class="d-flex flex-column justify-content-center">
+                  <span>Order Pending</span>
+                </div>
+                <div
+                  class="d-flex flex-column justify-content-center align-items-center"
+                >
+                  <span>Order On Process </span>
+                </div>
+                <div class="d-flex flex-column align-items-center">
+                  <span>Order Shipped</span>
+                </div>
+                <div class="d-flex flex-column align-items-end">
+                  <span>Order Delivered</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<app-footer></app-footer>

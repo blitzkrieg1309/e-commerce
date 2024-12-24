@@ -23,6 +23,7 @@ import { AssasinComponent } from './pages/class/assasin/assasin.component';
 import { BerserkerComponent } from './pages/class/berserker/berserker.component';
 import { RulerComponent } from './pages/class/ruler/ruler.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
+import { OrdersComponent } from './pages/orders/orders.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
     BerserkerComponent,
     RulerComponent,
     UserProfileComponent,
+    OrdersComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [

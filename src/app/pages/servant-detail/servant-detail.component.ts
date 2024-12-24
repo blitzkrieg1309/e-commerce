@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { Servant } from '../../servant';
 import { ServantListService } from '../../services/servant-list.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -28,7 +28,7 @@ export class ServantDetailComponent implements OnInit {
     star: 0,
   };
 
-  quantity: number = 1;
+  quantity = signal(1);
   isLoggedIn: boolean = false;
 
   constructor(
@@ -44,7 +44,6 @@ export class ServantDetailComponent implements OnInit {
       const productId = params.get('servantId');
       if (productId) {
         this.fetchServant(productId);
-        console.log('Product ID', productId);
       }
     });
 
@@ -73,7 +72,7 @@ export class ServantDetailComponent implements OnInit {
     this.cartService
       .addToCart({
         product_id: this.servant.id,
-        quantity: this.quantity,
+        quantity: this.quantity(),
       })
       .subscribe(
         () => {
@@ -91,12 +90,17 @@ export class ServantDetailComponent implements OnInit {
   }
 
   decrementQuantity() {
-    if (this.quantity > 1) {
-      this.quantity--;
+    if (this.quantity() > 1) {
+      this.quantity.set(this.quantity() - 1);
     }
   }
 
   incrementQuantity() {
-    this.quantity++;
+    // cek apakah stock masih tersedia semisal quantity lebih besar dari stock
+    if (this.quantity() >= this.servant.stock) {
+      alert('Servant Stock is not Enough');
+      return;
+    }
+    this.quantity.set(this.quantity() + 1);
   }
 }
