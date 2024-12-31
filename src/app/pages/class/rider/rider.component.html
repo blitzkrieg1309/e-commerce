@@ -1,1 +1,81 @@
-<p>rider works!</p>
+<app-header></app-header>
+
+<div class="container">
+  <h3 class="text-center mt-5">Rider Class</h3>
+  <div class="row mt-5">
+    <div class="col-md-3 d-flex justify-content-center">
+      <img
+        [src]="'images/class/Rider.webp'"
+        style="height: 500px; object-fit: contain"
+      />
+    </div>
+    <div class="col-md-9 mt-4">
+      <p>
+        Class Rider (クラス・ライダー, Raidā?), Mounted Knight (騎乗兵?) and
+        Heroic Spirit of the Mount (騎兵の英霊?), is one of the Four Cavalry
+        Classes among the seven standard Servant classes summoned for the Holy
+        Grail War.
+      </p>
+      <h5>Qualifications</h5>
+      <hr />
+      <p>
+        Servants placed within this Class are those known for riding mounts,
+        whether living beasts or human constructs, during their lives. There are
+        even some cases where legendary animals have been summoned as a Servant
+        such as Vánagandr and Red Hare. They generally have lower attributes
+        compared to the Three Knight Classes, but the abilities of the mounts
+        described in their legends compensate by granting them powerful Noble
+        Phantasms or abilities. They have the class abilities of Magic
+        Resistance and a high rank in Riding, allowing them to fully utilize the
+        abilities of their mounts. Depending on the rank, they can take full
+        control of everything from simple horses, modern machinery like
+        motorcycles and planes, and even Divine Beasts. Dragons are the only
+        exception as the ability to ride them falls under a different Skill;
+        however, rare exceptions do occur.
+      </p>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <h3 class="text-center">Known Riders</h3>
+    <div
+      class="col-lg-4 col-md-6 mb-3"
+      style="width: 260px"
+      *ngFor="let servant of rider"
+      (click)="goToProductDetails(servant.id)"
+    >
+      <div class="card">
+        <img
+          [src]="
+            'images/class' +
+            '/' +
+            servant.class +
+            '/' +
+            servant.image_url +
+            '.webp'
+          "
+          [alt]=""
+          class="card-img-top"
+          style="height: 300px; object-fit: contain"
+        />
+        <div class="card-body">
+          <h5 class="card-title"></h5>
+
+          <span
+            ><b>{{ servant.name }}:</b></span
+          ><br />
+          <span>
+            <b>{{ servant.class }}</b>
+          </span>
+          <p>
+            <ng-container *ngFor="let star of [].constructor(servant.star)">
+              ⭐
+            </ng-container>
+          </p>
+          <!-- <button class="btn btn-primary btn-sm">Add to Cart</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

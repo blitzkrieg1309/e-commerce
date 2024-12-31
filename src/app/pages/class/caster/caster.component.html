@@ -1,1 +1,79 @@
-<p>caster works!</p>
+<app-header></app-header>
+
+<div class="container">
+  <h3 class="text-center mt-5">Caster Class</h3>
+  <div class="row mt-5">
+    <div class="col-md-3 d-flex justify-content-center">
+      <img
+        [src]="'images/class/Caster.webp'"
+        style="height: 500px; object-fit: contain"
+      />
+    </div>
+    <div class="col-md-9 mt-4">
+      <p>
+        Class Caster (クラス・キャスター, Kyasutā?), Magus and Heroic Spirit of
+        Spells and Sorcery (魔術師の英霊?), is one of the Four Cavalry Classes
+        among the seven standard Servant classes summoned for the Holy Grail
+        War.
+      </p>
+      <h5>Qualifications</h5>
+      <hr />
+      <p>
+        Servants placed within this Class are usually adept in magecraft, and
+        the only qualifying condition is the mastery of sorceries of the highest
+        caliber compared to the specific parameter requirements of the other
+        classes. Due to not requiring any strong statistics, they generally have
+        low combat abilities, and due to the majority of Servants having some
+        form of Magic Resistance, this Class is thought to be the weakest of all
+        seven. They make up for this with other means, using magecraft that no
+        longer exists in the current age and, no matter which Heroic Spirit is
+        of which Class, possessing many possible ploys to be used against
+        enemies. Those of the Saber Class can likely challenge any Caster who
+        uses magecraft as their main offensive ability without needing to plan
+        due to their high Magic Resistance, while those of lesser resistance
+        like the Rider Class may require more strategy. Their class abilities
+        are Territory Creation, altering the surrounding lands in favor of their
+        sorcery, and Item Construction, which allows the magus to create magical
+        items and tools.
+      </p>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <h3 class="text-center">Known Casters</h3>
+    <div
+      class="col-lg-4 col-md-6 mb-3 justify-content-center"
+      style="width: 260px"
+      *ngFor="let servant of caster"
+      (clcik)="goToProductDetails(servant.id)"
+    >
+      <div class="card">
+        <img
+          [src]="
+            'images/class/' + servant.class + '/' + servant.image_url + '.webp'
+          "
+          [alt]=""
+          class="card-img-top"
+          style="height: 300px; object-fit: contain"
+        />
+        <div class="card-body">
+          <h5 class="card-title"></h5>
+
+          <span
+            ><b>{{ servant.name }}</b></span
+          ><br />
+          <span>
+            <b>{{ servant.class }}</b>
+          </span>
+          <p>
+            <ng-container *ngFor="let star of [].constructor(servant.star)">
+              ⭐
+            </ng-container>
+          </p>
+          <!-- <button class="btn btn-primary btn-sm">Add to Cart</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

@@ -13,7 +13,7 @@ export class ServantListService {
   constructor(private http: HttpClient) {}
 
   getProduct(): Observable<Servant[]> {
-    return this.http.get<Servant[]>(`${this.apiUrl}/servants`).pipe(
+    return this.http.get<Servant[]>(`${this.apiUrl}/servants/all`).pipe(
       map((servant) =>
         servant.map((servant) => ({
           id: servant.id,

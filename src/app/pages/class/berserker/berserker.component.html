@@ -1,1 +1,107 @@
-<p>berserker works!</p>
+<app-header></app-header>
+
+<div class="container">
+  <h3 class="text-center mt-5">Berserker Class</h3>
+  <div class="row mt-5">
+    <div class="col-md-3 d-flex justify-content-center">
+      <img
+        [src]="'images/class/Berserker.webp'"
+        style="height: 500px; object-fit: contain"
+      />
+    </div>
+    <div class="col-md-9 mt-4">
+      <p>
+        Class Berserker (クラス・バーサーカー, Bāsākā?), Mad Warrior and Heroic
+        Spirit of Berserk Rage (狂戦士の英霊?), is one of the Four Cavalry
+        Classes among the seven standard Servant classes summoned for the Holy
+        Grail War.
+      </p>
+      <h5>Qualifications</h5>
+      <hr />
+      <p>
+        Servants placed within this Class are always Heroic Spirits who have
+        gone berserkWP during battle at least once in their lifetime. This trait
+        allows them to use the special ability Mad Enhancement, which trades
+        their consciousnessWP and sanity for a large power boost. This Class is
+        usually for magi who have summoned Heroic Spirits with insufficient
+        abilities and attributes, allowing them to strengthen their Servants to
+        make up for their lower attributes and compete against stronger
+        opponents. While it is ideal for Servants to reach the level of the
+        Heroic Spirit, the Class allows for their attributes to surpass even the
+        original. If used on an already strong Heroic Spirit, such as Heracles,
+        they will become empowered to truly extraordinary levels. The abuse of
+        this to create powerful Servants has made the Class referred to as the
+        strongest of all seven classes.
+      </p>
+      <p>
+        It is possible to specify in the summoning ritual that the Servant be
+        placed under the Berserker Class for those familiar with the workings of
+        the Grail System. By adding in a specific line, Zouken Matou and the
+        Einzbern family, as members of the Three Founding Families, were able to
+        choose the Class during the Fourth and Fifth Holy Grail Wars
+        respectively. This Class comes at a price, as the Berserker Class is the
+        most difficult to control and a Master must expend a large amount of
+        additional magical energy merely to maintain the Berserker, and the
+        affected Heroic Spirit may lose access to certain abilities or even
+        Noble Phantasms depending on how much sanity it has taken away for
+        power.
+      </p>
+      <p>
+        Masters are unable to utilize coordination with their Servant unless
+        gifted with superb control over them. The lack of complex rational
+        thinking keeps them from being able to follow more than simple
+        directions, and it may even require Command Spells to keep them from
+        acting on their own. They generally rely on little other than brute
+        strength and overwhelming, uncontrolled strikes to physically beat down
+        their opponents. As a result, in every Holy Grail War before the Fifth,
+        the magical energy consumption and insanity of the Berserker Class has
+        made them incredibly difficult to maintain and control. Kariya Matou is
+        drained of his energy at a high rate and eventually it causes his death,
+        but he could have handled another Class without difficulty. They have
+        generally brought about their own Master's ruin due to their inability
+        to control them, so the Einzbern family developed Ilyasviel's Magic
+        Circuits specifically so that she could handle the strain with ease in
+        the Fifth Holy Grail War.
+      </p>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <h3 class="text-center">Known Berserkers</h3>
+    <div
+      class="col-lg-4 col-md-6 mb-3 justify-content-center"
+      style="width: 260px"
+      *ngFor="let servant of berserker"
+      (click)="goToProductDetails(servant.id)"
+    >
+      <div class="card">
+        <img
+          [src]="
+            'images/class/' + servant.class + '/' + servant.image_url + '.webp'
+          "
+          [alt]=""
+          class="card-img-top"
+          style="height: 300px; object-fit: contain"
+        />
+        <div class="card-body">
+          <h5 class="card-title"></h5>
+
+          <span
+            ><b>{{ servant.name }}</b></span
+          >
+          <br />
+          <span>
+            <b>{{ servant.class }}</b>
+          </span>
+          <p>
+            <ng-container *ngFor="let star of [].constructor(servant.star)">
+              ⭐
+            </ng-container>
+          </p>
+          <!-- <button class="btn btn-primary btn-sm">Add to Cart</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

@@ -1,1 +1,78 @@
-<p>lancer works!</p>
+<app-header></app-header>
+
+<div class="container">
+  <h3 class="text-center mt-5">Lancer Class</h3>
+  <div class="row mt-5">
+    <div class="col-md-3 d-flex justify-content-center">
+      <img
+        [src]="'images/class/Lancer.webp'"
+        style="height: 500px; object-fit: contain"
+      />
+    </div>
+    <div class="col-md-9 mt-4">
+      <p>
+        Class Lancer (クラス・ランサー, Ransā?), Knight of the Lance and Heroic
+        Spirit of the Lance (槍兵の英霊?), is one of the Three Knight Classes
+        among the seven standard Servant classes summoned for the Holy Grail
+        War.
+      </p>
+      <h5>Qualifications</h5>
+      <hr />
+      <p>
+        Servants placed within this class, many of which are Heroic Spirits who
+        were knights, are very agile, display excellent close combat skills,
+        show proficiency in hit-and-run tactics that capitalize on range and
+        speed, and are skilled with long-range melee weapons such as spearWPs
+        and lanceWPs. The qualifying conditions to be placed within the class
+        are second only to the Saber class, requiring overall excellent
+        attributes and a high agility attribute. Their only particular class
+        ability is Magic Resistance, and although they "tend to be less flashy
+        than the other classes", they display great reliability.
+      </p>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <h3 class="text-center">Known Lancers</h3>
+    <div
+      class="col-lg-4 col-md-6 mb-3 justify-content-center"
+      style="width: 260px"
+      *ngFor="let servant of lancer"
+      (click)="goToProductDetails(servant.id)"
+    >
+      <div class="card">
+        <img
+          [src]="
+            'images/class' +
+            '/' +
+            servant.class +
+            '/' +
+            servant.image_url +
+            '.webp'
+          "
+          [alt]=""
+          class="card-img-top"
+          style="height: 300px; object-fit: contain"
+        />
+        <div class="card-body">
+          <h5 class="card-title"></h5>
+
+          <span
+            ><b>{{ servant.name }}</b>
+          </span>
+          <br />
+          <span>
+            <b>{{ servant.class }}</b>
+          </span>
+          <p>
+            <ng-container *ngFor="let star of [].constructor(servant.star)">
+              ⭐
+            </ng-container>
+          </p>
+          <!-- <button class="btn btn-primary btn-sm">Add to Cart</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
