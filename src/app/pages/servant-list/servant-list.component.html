@@ -97,27 +97,32 @@
       <!-- Pagination -->
       <nav>
         <ul class="pagination justify-content-center">
+          <!-- Tombol Previous -->
           <li
             class="page-item"
             [class.disabled]="currentPage === 1"
             (click)="onPageChange(currentPage - 1)"
           >
-            <a class="page-link">&laquo;</a>
+            <a class="page-link">«</a>
           </li>
+
+          <!-- Tombol Dinamis Berdasarkan Jumlah Halaman -->
           <li
-            *ngFor="let page of [1, 2, 3, 4, 5]"
+            *ngFor="let page of pages"
             class="page-item"
             [class.active]="page === currentPage"
             (click)="onPageChange(page)"
           >
             <a class="page-link">{{ page }}</a>
           </li>
+
+          <!-- Tombol Next -->
           <li
             class="page-item"
-            [class.disabled]="filteredServants.length < itemsPerPage"
+            [class.disabled]="currentPage === totalPages"
             (click)="onPageChange(currentPage + 1)"
           >
-            <a class="page-link">&raquo;</a>
+            <a class="page-link">»</a>
           </li>
         </ul>
       </nav>

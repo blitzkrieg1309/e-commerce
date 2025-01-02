@@ -18,6 +18,8 @@ export class ServantListComponent implements OnInit {
   starFilter: string = '';
   currentPage: number = 1;
   itemsPerPage: number = 12;
+  totalPages: number = 0;
+  pages: number[] = [];
 
   constructor(
     private servantListService: ServantListService,
@@ -31,7 +33,6 @@ export class ServantListComponent implements OnInit {
   fetchProduct(): void {
     this.servantListService.getProduct().subscribe(
       (data: Servant[]) => {
-        // console.log('Servants:', data);
         this.servants = data;
         this.applyFilters();
       },
@@ -65,6 +66,10 @@ export class ServantListComponent implements OnInit {
       );
     }
 
+    //Hitung total page
+    this.totalPages = Math.ceil(filtered.length / this.itemsPerPage);
+    this.pages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
+
     // Pagination
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
@@ -78,6 +83,7 @@ export class ServantListComponent implements OnInit {
     const selectElement = event.target as HTMLInputElement;
     const value = selectElement.value;
     this.searchQuery = value;
+    this.currentPage = 1;
     this.applyFilters();
   }
 
@@ -85,6 +91,7 @@ export class ServantListComponent implements OnInit {
     const selectElement = event.target as HTMLSelectElement;
     const value = selectElement.value;
     this.classFilter = value;
+    this.currentPage = 1;
     this.applyFilters();
   }
 
@@ -92,12 +99,15 @@ export class ServantListComponent implements OnInit {
     const selectElement = event.target as HTMLSelectElement;
     const value = selectElement.value;
     this.starFilter = value;
+    this.currentPage = 1;
     this.applyFilters();
   }
 
   onPageChange(page: number): void {
-    this.currentPage = page;
-    this.applyFilters();
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+      this.applyFilters();
+    }
   }
 
   goToProductDetail(productId: string): void {
