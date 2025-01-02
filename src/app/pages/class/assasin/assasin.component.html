@@ -1,1 +1,94 @@
-<p>assasin works!</p>
+<app-header></app-header>
+
+<div class="container">
+  <h3 class="text-center mt-5">Assassin Class</h3>
+  <div class="row mt-5">
+    <div class="col-md-3 d-flex justify-content-center">
+      <img
+        [src]="'images/class/Assassin.webp'"
+        style="height: 500px; object-fit: contain"
+      />
+    </div>
+    <div class="col-md-9 mt-4">
+      <p>
+        Class Assassin (クラス・アサシン, Asashin?), Silent Killer and Heroic
+        Spirit of Assassination (暗殺者の英霊, Ansatsusha no Eirei?), is one of
+        the Four Cavalry Classes among the seven standard Servant classes
+        summoned for the Holy Grail War.
+      </p>
+      <h5>Qualifications</h5>
+      <hr />
+      <p>
+        Within certain Holy Grail War structures, the only qualifying Heroic
+        Spirits are the nineteen Hassan-i-Sabbah due to the etymology of the
+        very word Assassin being tied to them. Within the Fuyuki Holy Grail War,
+        it is said to be fixed in the system itself that Hassan will always be
+        summoned, but there is a small chance, so low as to be considered
+        nonexistent, that another will answer the summons. The existence of
+        Sasaki Kojiro is an abberation within that system due to his unique
+        circumstances.
+      </p>
+      <p>
+        Within the world of Fate/Apocrypha, the Subcategory Holy Grail War led
+        to a proliferation in the number of Hassans summoned, a "golden era"
+        where Assassins were a great menace because, on top of their mana
+        consumption being low, killing Masters was far easier than battles
+        between Servants. However, this resulted in all of their True Names and
+        Noble Phantasms being documented, and countermeasures against them were
+        taken, causing the Hassan boom to fall into decline. Masters eventually
+        began adding additional lines to the summoning incantations and bringing
+        catalysts not associated with Hassan to call upon different Heroic
+        Spirits.
+      </p>
+      <p>
+        Within other systems, there is no limit on the summoning of other Heroic
+        Spirits.
+      </p>
+      <h5>Skills and characteristics</h5>
+      <hr />
+      <p>
+        For the Hassan-i-Sabbah, they lack glamorous legends, so they are known
+        to possess low attributes. Their very lifeline in battle is reliance on
+        Presence Concealment.
+      </p>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <h3 class="text-center">Known Assassins</h3>
+    <div
+      class="col-lg-4 col-md-6 mb-3 justify-content-center"
+      style="width: 260px"
+      *ngFor="let servant of assasin"
+      (click)="goToProductDetails(servant.id)"
+    >
+      <div class="card">
+        <img
+          [src]="
+            'images/class/' + servant.class + '/' + servant.image_url + '.webp'
+          "
+          [alt]=""
+          class="card-img-top"
+          style="height: 300px; object-fit: contain"
+        />
+        <div class="card-body">
+          <h5 class="card-title"></h5>
+
+          <span
+            ><b>{{ servant.name }}</b></span
+          ><br />
+          <span>
+            <b>{{ servant.class }}</b>
+          </span>
+          <p>
+            <ng-container *ngFor="let star of [].constructor(servant.star)">
+              ⭐
+            </ng-container>
+          </p>
+          <!-- <button class="btn btn-primary btn-sm">Add to Cart</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

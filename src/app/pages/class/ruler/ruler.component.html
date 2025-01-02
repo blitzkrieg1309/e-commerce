@@ -1,1 +1,90 @@
-<p>ruler works!</p>
+<app-header></app-header>
+
+<div class="container">
+  <h3 class="text-center mt-5">Ruler Class</h3>
+  <div class="row mt-5">
+    <div class="col-md-3 d-flex justify-content-center">
+      <img
+        [src]="'images/class/Ruler.webp'"
+        style="height: 500px; object-fit: contain"
+      />
+    </div>
+    <div class="col-md-9 mt-4">
+      <p>
+        Ruler (ルーラー, Rūrā?), Heroic Spirit of Arbitration (裁定者の英霊?),
+        is a non-standard Servant Class brought forth for the purpose of
+        presiding over Holy Grail Wars.
+      </p>
+      <h5>Qualifications</h5>
+      <hr />
+      <p>
+        The Fuyuki Grail utilizes its own logic to sense when actions are
+        encroaching upon its authority, and regardless of other mediators like
+        those from the Church, it brings forth Ruler to protect the concept of
+        the Holy Grail War itself. In the case of the reserve system of the
+        Greater Grail being activated in the Great Holy Grail War, Ruler takes
+        neither side of the battle, but only acts in the interest of the Grail.
+        The Ruler-class Servants are given Command Spells for the other
+        Servants.
+      </p>
+      <p>
+        A Ruler is also summoned to preserve the laws of Heroic Spirits to
+        ensure they won't be violated, such as the law of "the dead not leading
+        the living", touted as the greatest law of Heroic Spirits, and to
+        maintain human history by preserving the illusion behind the Age of Gods
+        so that people do not know about the truth behind it. The role of a
+        Ruler is to arbitrate the truth and adjudicate all things in order to
+        maintain human history
+      </p>
+      <p>
+        The criteria to be summoned for the Ruler Class is impartiality and
+        possessing no desire for the Holy Grail. Those who qualify are most
+        often Saints, and any Ruler summoned to preside over a Holy Grail will
+        be a Saint under normal conditions. Within other systems like the FATE
+        System, others who meet the criteria can be summoned. One exception to
+        the normal rule of impartiality is Amakusa Shirou Tokisada, an
+        aberration who does not normally qualify, summoned by the Einzberns as
+        the Heroic Spirit who was considered the closest to a ‘Saint’ that could
+        possibly be found in the Far East.
+      </p>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <h3 class="text-center">Known Ruler</h3>
+    <div
+      class="col-lg-4 col-md-6 mb-3 justify-content-center"
+      style="width: 260px"
+      *ngFor="let servant of ruler"
+      (click)="goToProductDetail(servant.id)"
+    >
+      <div class="card">
+        <img
+          [src]="
+            'images/class/' + servant.class + '/' + servant.image_url + '.webp'
+          "
+          [alt]=""
+          class="card-img-top"
+          style="height: 300px; object-fit: contain"
+        />
+        <div class="card-body">
+          <h5 class="card-title"></h5>
+
+          <span
+            ><b>{{ servant.name }}</b></span
+          ><br />
+          <span>
+            <b>{{ servant.class }}</b>
+          </span>
+          <p>
+            <ng-container *ngFor="let star of [].constructor(servant.star)">
+              ⭐
+            </ng-container>
+          </p>
+          <!-- <button class="btn btn-primary btn-sm">Add to Cart</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

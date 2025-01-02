@@ -1,4 +1,10 @@
-import { Component, OnInit, signal } from '@angular/core';
+import {
+  Component,
+  effect,
+  OnInit,
+  signal,
+  runInInjectionContext,
+} from '@angular/core';
 import { Servant } from '../../servant';
 import { ServantListService } from '../../services/servant-list.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -30,6 +36,7 @@ export class ServantDetailComponent implements OnInit {
 
   quantity = signal(1);
   isLoggedIn: boolean = false;
+  stock = signal(0);
 
   constructor(
     private servantListService: ServantListService,
@@ -47,6 +54,11 @@ export class ServantDetailComponent implements OnInit {
       }
     });
 
+    effect(() => {
+      this.stock.set(this.servant.stock - this.quantity());
+      console.log('Stock Updated', this.stock());
+    });
+
     this.isLoggedIn = this.authService.isLoggedIn();
   }
 
@@ -54,6 +66,7 @@ export class ServantDetailComponent implements OnInit {
     this.servantListService.getProductById(productId).subscribe(
       (data: Servant) => {
         this.servant = data;
+        this.stock.set(data.stock - 1);
       },
       (error) => {
         console.error('Error Fetching Servant', error);
@@ -91,7 +104,8 @@ export class ServantDetailComponent implements OnInit {
 
   decrementQuantity() {
     if (this.quantity() > 1) {
-      this.quantity.set(this.quantity() - 1);
+      this.quantity.update((value) => value - 1);
+      this.stock.update((stock) => stock + 1);
     }
   }
 
@@ -101,6 +115,7 @@ export class ServantDetailComponent implements OnInit {
       alert('Servant Stock is not Enough');
       return;
     }
-    this.quantity.set(this.quantity() + 1);
+    this.quantity.update((value) => value + 1);
+    this.stock.update((stock) => stock - 1);
   }
 }

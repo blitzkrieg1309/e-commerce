@@ -1,1 +1,83 @@
-<p>archer works!</p>
+<app-header></app-header>
+
+<div class="container">
+  <h3 class="text-center mt-5">Archer Class</h3>
+  <div class="row mt-5">
+    <div class="col-md-3 d-flex justify-content-center">
+      <img
+        [src]="'images/class/Archer.webp'"
+        style="height: 500px; object-fit: contain"
+      />
+    </div>
+    <div class="col-md-9 mt-4">
+      <p>
+        Class Archer (クラス・アーチャー, Āchā?), Knight of the Bow and Heroic
+        Spirit of the Bow (弓兵の英霊?), is one of the Three Knight Classes
+        among the seven standard Servant classes summoned for the Holy Grail
+        War.
+      </p>
+      <h5>Qualifications</h5>
+      <hr />
+      <p>
+        Servants placed within this Class excel in possessing powerful Noble
+        Phantasms, are able to act as highly effective scouts, and are
+        frequently Heroic Spirits from the Age of Gods when magecraft was still
+        commonplace. The qualifying condition for the Heroic Spirits is not
+        attributes, but instead the possession of powerful projectile weapons or
+        special abilities related to projectile weapons. They possess high Magic
+        Resistance as a Class Skill, so most modern magi are unable to inflict
+        damage to them. They also possess Independent Action, allowing them the
+        ability to act independently for a length of time without an active
+        supply of magical energy from their Master.
+      </p>
+      <p>
+        Due to excelling in powerful Noble Phantasms, Tokiomi Tohsaka considers
+        it inevitable that Gilgamesh, with his EX ranked Ea, came to be of this
+        class. For Archers with high ranked Independent Action and a disposition
+        opposite to the Master, the only guaranteed way to control them is
+        through the use of Command Spells. Servants will generally assume that
+        the Noble Phantasm of an Archer-class Servant is their bow, but any
+        projectile weapons, even firearms, can be indicative of an Archer.
+      </p>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <h3 class="text-center">Known Archers</h3>
+    <div
+      class="col-lg-3 col-md-4 mb-3 justify-content-center"
+      *ngFor="let servant of acher"
+      style="width: 260px"
+      (click)="goToProductDetails(servant.id)"
+    >
+      <div class="card">
+        <img
+          [src]="
+            'images/class/' + servant.class + '/' + servant.image_url + '.webp'
+          "
+          [alt]=""
+          class="card-img-top"
+          style="height: 300px; object-fit: contain"
+        />
+        <div class="card-body">
+          <h5 class="card-title"></h5>
+
+          <span>
+            <b>{{ servant.name }}</b>
+          </span>
+          <br />
+          <span>
+            <b>{{ servant.class }}</b>
+          </span>
+          <p>
+            <ng-container *ngFor="let star of [].constructor(servant.star)">
+              ⭐
+            </ng-container>
+          </p>
+          <!-- <button class="btn btn-primary btn-sm">Add to Cart</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

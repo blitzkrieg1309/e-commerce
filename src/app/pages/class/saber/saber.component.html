@@ -1,3 +1,92 @@
 <app-header></app-header>
 
+<div class="container">
+  <h3 class="text-center mt-5">Saber Class</h3>
+  <div class="row mt-5">
+    <div class="col-md-3 d-flex justify-content-center">
+      <img
+        [src]="'images/class/Saber.webp'"
+        style="height: 500px; object-fit: contain"
+      />
+    </div>
+    <div class="col-md-9 mt-4">
+      <p>
+        Class Saber (クラス・セイバー, Seibā?), Knight of the Sword (剣の騎士?)
+        and Heroic Spirit of the Sword (剣士の英霊?), is one of the Three Knight
+        Classes among the seven standard Servant classes summoned for the Holy
+        Grail War.
+      </p>
+      <h5>Qualifications</h5>
+      <hr />
+      <p>
+        Servants placed within this class are agile and powerful melee warriors
+        adept at swordsmanship, boasting high ratings in all categories, and
+        they are often heroes from the Age of Gods when magecraft was still
+        commonplace. The qualifying conditions require the Heroic Spirits to
+        have legends as knights of the sword, and it is the class that requires
+        the highest levels of attributes in all but the Magic attribute. It is
+        possible for the status qualifications to be bypassed in special
+        circumstances, such as through Nero Claudius's Imperial Privilege.
+        Toyotomi Hideyoshi's Noble Phantasm Blade Taker qualifies him as an
+        extremely rare Saber without qualities distinctive of the class.
+        Compatible Heroic Spirits usually excel in delivering powerful burst
+        attacks.
+      </p>
+      <h5>Class Skills</h5>
+      <hr />
+      <p>
+        The standard opinion is that the Saber Class is the best of the seven
+        classes and the strongest of the Servants, said to have made it to the
+        final battle in the first four Fuyuki wars. They will generally have an
+        overwhelming advantage over Caster-class Servants who uses magecraft as
+        their main offensive ability due to their Magic Resistance Skill. The
+        weakness of the class is its straightforwardness in battle, only able to
+        attack the enemy with their sword while unable to resort to other
+        tactics like the Presence Concealment of the Assassin Class. Among the
+        many Heroic Spirits that can be summoned to fight in a Holy Grail War,
+        King Arthur is widely considered to be the strongest Saber class
+        servant. The Class Skills of the Saber class are Magic Resistance and
+        Riding.
+      </p>
+    </div>
+  </div>
+  <div class="row mt-5 justify-content-center">
+    <h3 class="text-center">Known Sabers</h3>
+    <div
+      class="col-lg-3 col-md-4 mb-3"
+      style="width: 260px"
+      *ngFor="let servant of saber"
+      (click)="goToProductDetails(servant.id)"
+    >
+      <div class="card">
+        <img
+          [src]="
+            'images/class/' + servant.class + '/' + servant.image_url + '.webp'
+          "
+          [alt]=""
+          class="card-img-top"
+          style="height: 300px; object-fit: contain"
+        />
+        <div class="card-body">
+          <h5 class="card-title"></h5>
+
+          <span>
+            <b>{{ servant.name }}</b>
+          </span>
+          <br />
+          <span>
+            <b>{{ servant.class }}</b>
+          </span>
+          <p>
+            <ng-container *ngFor="let star of [].constructor(servant.star)">
+              ⭐
+            </ng-container>
+          </p>
+          <!-- <button class="btn btn-primary btn-sm">Add to Cart</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <app-footer></app-footer>

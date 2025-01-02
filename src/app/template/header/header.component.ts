@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginStatus = this.authService.isLoggedIn();
+    this.checkExpiredToken();
   }
 
   logout(): void {
@@ -23,5 +24,11 @@ export class HeaderComponent implements OnInit {
     this.loginStatus = false;
     alert('logged out successfully');
     this.router.navigate(['/login']);
+  }
+
+  checkExpiredToken(): void {
+    if (this.authService.isTokenExpired()) {
+      this.authService.removeToken();
+    }
   }
 }

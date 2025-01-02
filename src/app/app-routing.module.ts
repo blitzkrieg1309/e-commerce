@@ -33,7 +33,7 @@ const routes: Routes = [
   { path: 'class/lancer', component: LancerComponent },
   { path: 'class/rider', component: RiderComponent },
   { path: 'class/caster', component: CasterComponent },
-  { path: 'class/assasin', component: AssasinComponent },
+  { path: 'class/assassin', component: AssasinComponent },
   { path: 'class/berserker', component: BerserkerComponent },
   { path: 'class/ruler', component: RulerComponent },
   { path: '**', redirectTo: '/home' },
